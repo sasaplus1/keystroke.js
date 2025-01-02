@@ -88,6 +88,14 @@ testcases.push({
 });
 
 testcases.push({
+  input: "2<C-g>",
+  expected: [
+    { ...baseExpected, code: "2" },
+    { ...baseExpected, code: "G", ctrl: true },
+  ],
+});
+
+testcases.push({
   input: "<ESC>",
   expected: [{ ...baseExpected, code: "ESC" }],
 });
