@@ -8,10 +8,10 @@ export type KeyStroke = {
   code: string;
   /** with ctrl key */
   ctrl: boolean;
-  /** keystroke string if keystroke string is invalid, use for notice to user */
-  invalid: string;
   /** with meta key */
   meta: boolean;
+  /** raw keystroke string */
+  raw: string;
   /** with shift key */
   shift: boolean;
 };
@@ -20,8 +20,8 @@ export type KeyStroke = {
  * Parse a keystroke string into an array of KeyStroke objects
  *
  * ```ts
- * parse("i"); // => [{ alt: false, code: "I", ctrl: false, invalid: "", meta: false, shift: false }]
- * parse("<C-x>"); // => [{ alt: false, code: "X", ctrl: true, invalid: "", meta: false, shift: false }]
+ * parse("i"); // => [{ alt: false, code: "i", ctrl: false, meta: false, raw: "i", shift: false }]
+ * parse("<C-x>"); // => [{ alt: false, code: "x", ctrl: true, meta: false, raw: "<C-x>", shift: false }]
  * ```
  */
 export function parse(keystroke: string): KeyStroke[] {
@@ -37,15 +37,13 @@ export function parse(keystroke: string): KeyStroke[] {
       ? key.replace(/(?:[<>]|[acms]-)/gi, "")
       : key;
 
-    const invalid = code === "" ? key : "";
-
     return {
-      alt: invalid ? false : /a-/i.test(key),
-      code: code.toUpperCase(),
-      ctrl: invalid ? false : /c-/i.test(key),
-      invalid,
-      meta: invalid ? false : /m-/i.test(key),
-      shift: invalid ? false : /s-/i.test(key),
+      alt: /a-/i.test(key),
+      code,
+      ctrl: /c-/i.test(key),
+      meta: /m-/i.test(key),
+      raw: key,
+      shift: /s-/i.test(key),
     };
   });
 
