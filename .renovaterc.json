@@ -1,0 +1,15 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":automergeMinor",
+    ":label(renovate)",
+    ":assignee(sasaplus1)",
+    ":timezone(Asia/Tokyo)",
+    "helpers:pinGitHubActionDigestsToSemver"
+  ],
+  "lockFileMaintenance": {
+    "automerge": true,
+    "enabled": true
+  }
+}
