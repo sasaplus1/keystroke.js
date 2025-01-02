@@ -1,7 +1,7 @@
 import { assertEquals } from "@std/assert";
-import { type KeyStroke, parse } from "./main.ts";
+import { type Keystroke, parse } from "./main.ts";
 
-const baseExpected: KeyStroke = {
+const baseExpected: Keystroke = {
   alt: false,
   code: "",
   ctrl: false,
@@ -12,7 +12,7 @@ const baseExpected: KeyStroke = {
 
 const testcases: {
   input: string;
-  expected: KeyStroke[];
+  expected: Keystroke[];
 }[] = [];
 
 testcases.push({

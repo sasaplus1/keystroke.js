@@ -1,7 +1,7 @@
 /**
- * KeyStroke structure
+ * Keystroke structure
  */
-export type KeyStroke = {
+export type Keystroke = {
   /** with alt key */
   alt: boolean;
   /** code string */
@@ -24,14 +24,14 @@ export type KeyStroke = {
  * parse("<C-x>"); // => [{ alt: false, code: "x", ctrl: true, meta: false, raw: "<C-x>", shift: false }]
  * ```
  */
-export function parse(keystroke: string): KeyStroke[] {
+export function parse(keystroke: string): Keystroke[] {
   const keys = keystroke.match(/<([^>]*)>|(.)/g);
 
   if (!keys) {
     return [];
   }
 
-  const result = keys.map<KeyStroke>((key) => {
+  const result = keys.map<Keystroke>((key) => {
     // get code from key, e.g. <C-x> => x
     const code = /^<[^>]*>$/.test(key)
       ? key.replace(/(?:[<>]|[acms]-)/gi, "")
