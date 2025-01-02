@@ -5,8 +5,8 @@ const baseExpected: KeyStroke = {
   alt: false,
   code: "",
   ctrl: false,
-  invalid: "",
   meta: false,
+  raw: "",
   shift: false,
 };
 
@@ -15,102 +15,105 @@ const testcases: {
   expected: KeyStroke[];
 }[] = [];
 
-testcases.push({ input: "i", expected: [{ ...baseExpected, code: "I" }] });
+testcases.push({
+  input: "i",
+  expected: [{ ...baseExpected, code: "i", raw: "i" }],
+});
 testcases.push({
   input: "gg",
   expected: [
-    { ...baseExpected, code: "G" },
-    { ...baseExpected, code: "G" },
+    { ...baseExpected, code: "g", raw: "g" },
+    { ...baseExpected, code: "g", raw: "g" },
   ],
 });
 testcases.push({
   input: "cit",
   expected: [
-    { ...baseExpected, code: "C" },
-    { ...baseExpected, code: "I" },
-    { ...baseExpected, code: "T" },
+    { ...baseExpected, code: "c", raw: "c" },
+    { ...baseExpected, code: "i", raw: "i" },
+    { ...baseExpected, code: "t", raw: "t" },
   ],
 });
 
 testcases.push({
   input: "<A-x>",
-  expected: [{ ...baseExpected, code: "X", alt: true }],
+  expected: [{ ...baseExpected, alt: true, code: "x", raw: "<A-x>" }],
 });
 testcases.push({
   input: "<a-x>",
-  expected: [{ ...baseExpected, code: "X", alt: true }],
+  expected: [{ ...baseExpected, alt: true, code: "x", raw: "<a-x>" }],
 });
 testcases.push({
   input: "<C-x>",
-  expected: [{ ...baseExpected, code: "X", ctrl: true }],
+  expected: [{ ...baseExpected, code: "x", ctrl: true, raw: "<C-x>" }],
 });
 testcases.push({
   input: "<c-x>",
-  expected: [{ ...baseExpected, code: "X", ctrl: true }],
+  expected: [{ ...baseExpected, code: "x", ctrl: true, raw: "<c-x>" }],
 });
 testcases.push({
   input: "<M-x>",
-  expected: [{ ...baseExpected, code: "X", meta: true }],
+  expected: [{ ...baseExpected, code: "x", meta: true, raw: "<M-x>" }],
 });
 testcases.push({
   input: "<m-x>",
-  expected: [{ ...baseExpected, code: "X", meta: true }],
+  expected: [{ ...baseExpected, code: "x", meta: true, raw: "<m-x>" }],
 });
 testcases.push({
   input: "<S-x>",
-  expected: [{ ...baseExpected, code: "X", shift: true }],
+  expected: [{ ...baseExpected, code: "x", shift: true, raw: "<S-x>" }],
 });
 testcases.push({
   input: "<s-x>",
-  expected: [{ ...baseExpected, code: "X", shift: true }],
+  expected: [{ ...baseExpected, code: "x", shift: true, raw: "<s-x>" }],
 });
 
 testcases.push({
   input: "<C-x><C-c>",
   expected: [
-    { ...baseExpected, code: "X", ctrl: true },
-    { ...baseExpected, code: "C", ctrl: true },
+    { ...baseExpected, code: "x", ctrl: true, raw: "<C-x>" },
+    { ...baseExpected, code: "c", ctrl: true, raw: "<C-c>" },
   ],
 });
 testcases.push({
   input: "<C-S-x><C-S-c>",
   expected: [
-    { ...baseExpected, code: "X", ctrl: true, shift: true },
-    { ...baseExpected, code: "C", ctrl: true, shift: true },
+    { ...baseExpected, code: "x", ctrl: true, shift: true, raw: "<C-S-x>" },
+    { ...baseExpected, code: "c", ctrl: true, shift: true, raw: "<C-S-c>" },
   ],
 });
 testcases.push({
   input: "<S-C-x><S-C-c>",
   expected: [
-    { ...baseExpected, code: "X", ctrl: true, shift: true },
-    { ...baseExpected, code: "C", ctrl: true, shift: true },
+    { ...baseExpected, code: "x", ctrl: true, shift: true, raw: "<S-C-x>" },
+    { ...baseExpected, code: "c", ctrl: true, shift: true, raw: "<S-C-c>" },
   ],
 });
 
 testcases.push({
   input: "2<C-g>",
   expected: [
-    { ...baseExpected, code: "2" },
-    { ...baseExpected, code: "G", ctrl: true },
+    { ...baseExpected, code: "2", raw: "2" },
+    { ...baseExpected, code: "g", ctrl: true, raw: "<C-g>" },
   ],
 });
 
 testcases.push({
   input: "<ESC>",
-  expected: [{ ...baseExpected, code: "ESC" }],
+  expected: [{ ...baseExpected, code: "ESC", raw: "<ESC>" }],
 });
 testcases.push({
   input: "<esc>",
-  expected: [{ ...baseExpected, code: "ESC" }],
+  expected: [{ ...baseExpected, code: "esc", raw: "<esc>" }],
 });
 
 testcases.push({
   input: "<S-Tab>",
-  expected: [{ ...baseExpected, code: "TAB", shift: true }],
+  expected: [{ ...baseExpected, code: "Tab", shift: true, raw: "<S-Tab>" }],
 });
 testcases.push({
   input: "<C-CR>",
-  expected: [{ ...baseExpected, code: "CR", ctrl: true }],
+  expected: [{ ...baseExpected, code: "CR", ctrl: true, raw: "<C-CR>" }],
 });
 
 testcases.push({
@@ -119,11 +122,11 @@ testcases.push({
 });
 testcases.push({
   input: "<>",
-  expected: [{ ...baseExpected, code: "", invalid: "<>" }],
+  expected: [{ ...baseExpected, code: "", raw: "<>" }],
 });
 testcases.push({
   input: "<C->",
-  expected: [{ ...baseExpected, code: "", invalid: "<C->" }],
+  expected: [{ ...baseExpected, code: "", ctrl: true, raw: "<C->" }],
 });
 
 for (const { input, expected } of testcases) {
