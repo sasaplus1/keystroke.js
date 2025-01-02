@@ -25,25 +25,17 @@ export type KeyStroke = {
  * ```
  */
 export function parse(keystroke: string): KeyStroke[] {
-  const keys = keystroke.match(/([a-z]|<[^>]*>)/gi);
+  const keys = keystroke.match(/<([^>]*)>|(.)/g);
 
   if (!keys) {
     return [];
   }
 
   const result = keys.map<KeyStroke>((key) => {
-    let code = "";
-
-    // is key within <>?
-    const withinDiamond = key.match(/^<.*?-?([a-z]+)>$/i);
-
-    if (withinDiamond && withinDiamond[1] !== "") {
-      // <C-x> => x
-      code = withinDiamond[1];
-    } else if (key.length === 1) {
-      // x => x
-      code = key;
-    }
+    // get code from key, e.g. <C-x> => x
+    const code = /^<[^>]*>$/.test(key)
+      ? key.replace(/(?:[<>]|[acms]-)/gi, "")
+      : key;
 
     const invalid = code === "" ? key : "";
 
