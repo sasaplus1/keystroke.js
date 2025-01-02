@@ -13,10 +13,10 @@ $ deno add jsr:@sasaplus1/keystroke
 ## Usage
 
 ```ts
-import { parse } from '@sasaplus1/keystroke';
+import { parse } from "@sasaplus1/keystroke";
 
-parse('cit') // => [{code: 'C', ... }, {code: 'I', ... }, {code: 'T', ... }]
-parse('<C-x><C-c>'); // => [{code: 'X', ctrl: true, ... }, {code: 'C', ctrl: true, ... }]
+parse("cit"); // => [{code: 'C', ... }, {code: 'I', ... }, {code: 'T', ... }]
+parse("<C-x><C-c>"); // => [{code: 'X', ctrl: true, ... }, {code: 'C', ctrl: true, ... }]
 ```
 
 ## License
