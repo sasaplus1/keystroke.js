@@ -27,8 +27,10 @@
     "url": "git+https://github.com/sasaplus1/keystroke.js.git"
   },
   "scripts": {
-    "postinstall": "deno install --lock || true",
-    "prepublishOnly": "tsc -p ./tsconfig.type.json"
+    "build": "esbuild --outdir=./dist ./mod.ts ./main.ts && sg scan -U -r ./replace-extension.yml ./dist/*.js && tsc -p ./tsconfig.type.json",
+    "clean": "rm -rf ./dist",
+    "postinstall": "deno install --lock --allow-scripts=npm:@ast-grep/cli@0.32.3 || true",
+    "prepublishOnly": "npm run clean && npm run build"
   },
   "sideEffects": false,
   "type": "module"
