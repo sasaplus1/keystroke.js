@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    // tsc cannot output javascript when allowImportingTsExtensions is true
+    // https://www.typescriptlang.org/tsconfig/#allowImportingTsExtensions
+    "allowImportingTsExtensions": true,
+    "declaration": true,
+    "declarationDir": "./dist",
+    "declarationMap": true,
+    "emitDeclarationOnly": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "outDir": "./dist",
+    "target": "es2020"
+  },
+  "files": [
+    "main.ts",
+    "mod.ts"
+  ]
+}
