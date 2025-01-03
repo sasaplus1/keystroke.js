@@ -3,10 +3,6 @@
   "name": "@sasaplus1/keystroke",
   "version": "2.0.0",
   "exports": "./mod.ts",
-  "imports": {
-    "@std/expect": "jsr:@std/expect@^1.0.10",
-    "@std/testing": "jsr:@std/testing@^1.0.8"
-  },
   "license": "MIT",
   "nodeModulesDir": "manual",
   "publish": {
