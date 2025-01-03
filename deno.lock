@@ -4,6 +4,7 @@
     "npm:@ast-grep/cli@0.32.3": "0.32.3",
     "npm:@vitest/browser@2.1.8": "2.1.8_vitest@2.1.8__vite@5.4.11_@testing-library+dom@10.4.0_msw@2.7.0__typescript@5.7.2_typescript@5.7.2",
     "npm:esbuild@0.24.2": "0.24.2",
+    "npm:playwright@1.49.1": "1.49.1",
     "npm:typescript@5.7.2": "5.7.2",
     "npm:vitest@2.1.8": "2.1.8_vite@5.4.11"
   },
@@ -635,6 +636,9 @@
     "expect-type@1.1.0": {
       "integrity": "sha512-bFi65yM+xZgk+u/KRIpekdSYkTB5W1pEf0Lt8Q8Msh7b+eQ7LXVtIB1Bkm4fvclDEL1b2CZkMhv2mOeF8tMdkA=="
     },
+    "fsevents@2.3.2": {
+      "integrity": "sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA=="
+    },
     "fsevents@2.3.3": {
       "integrity": "sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw=="
     },
@@ -722,6 +726,16 @@
     "picocolors@1.1.1": {
       "integrity": "sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA=="
     },
+    "playwright-core@1.49.1": {
+      "integrity": "sha512-BzmpVcs4kE2CH15rWfzpjzVGhWERJfmnXmniSyKeRZUs9Ws65m+RGIi7mjJK/euCegfn3i7jvqWeWyHe9y3Vgg=="
+    },
+    "playwright@1.49.1": {
+      "integrity": "sha512-VYL8zLoNTBxVOrJBbDuRgDWa3i+mfQgDTrL8Ah9QXZ7ax4Dsj0MSq5bYgytRnDVVe+njoKnfsYkH3HzqVj5UZA==",
+      "dependencies": [
+        "fsevents@2.3.2",
+        "playwright-core"
+      ]
+    },
     "postcss@8.4.49": {
       "integrity": "sha512-OCVPnIObs4N29kxTjzLfUryOkvZEq+pf8jTF0lg8E7uETuWHA+v7j3c/xJmiqpX450191LlmZfUKkXxkTry7nA==",
       "dependencies": [
@@ -785,7 +799,7 @@
         "@rollup/rollup-win32-ia32-msvc",
         "@rollup/rollup-win32-x64-msvc",
         "@types/estree",
-        "fsevents"
+        "fsevents@2.3.3"
       ]
     },
     "siginfo@2.0.0": {
@@ -900,7 +914,7 @@
       "integrity": "sha512-c7jFQRklXua0mTzneGW9QVyxFjUgwcihC4bXEtujIo2ouWCe1Ajt/amn2PCxYnhYfd5k09JX3SB7OYWFKYqj8Q==",
       "dependencies": [
         "esbuild@0.21.5",
-        "fsevents",
+        "fsevents@2.3.3",
         "postcss",
         "rollup"
       ]
@@ -1010,6 +1024,7 @@
         "npm:@ast-grep/cli@0.32.3",
         "npm:@vitest/browser@2.1.8",
         "npm:esbuild@0.24.2",
+        "npm:playwright@1.49.1",
         "npm:typescript@5.7.2",
         "npm:vitest@2.1.8"
       ]
