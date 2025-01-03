@@ -3,6 +3,7 @@
   "specifiers": {
     "jsr:@std/assert@^1.0.10": "1.0.10",
     "jsr:@std/internal@^1.0.5": "1.0.5",
+    "npm:@ast-grep/cli@0.32.3": "0.32.3",
     "npm:esbuild@0.24.2": "0.24.2",
     "npm:typescript@5.7.2": "5.7.2"
   },
@@ -18,6 +19,40 @@
     }
   },
   "npm": {
+    "@ast-grep/cli-darwin-arm64@0.32.3": {
+      "integrity": "sha512-o7H/zofqbJ2Mqyig1GOdsRAbJlaMjBCnH7QjKzYEstuAI5JmvLa8dl9H6zoShs/17XThYDW9opYFtRCEscxNYg=="
+    },
+    "@ast-grep/cli-darwin-x64@0.32.3": {
+      "integrity": "sha512-CO3xmTw015fH/x5zO2QEA6C5nEzRxy+6UDGLEZ74Bmmz0CjRceE4h+Hcw/RCwBs1aNRIO+VCAVKoqz/Gudb/SQ=="
+    },
+    "@ast-grep/cli-linux-arm64-gnu@0.32.3": {
+      "integrity": "sha512-1zw2DY3a4ZW71DmPLpbOwmb7LrsXvBRVcDg1a++0yI9EPkLDPpX9wtssQOugh5i830ouBkySTS5WEfKC7Ir3Cg=="
+    },
+    "@ast-grep/cli-linux-x64-gnu@0.32.3": {
+      "integrity": "sha512-0isP7hCbR/0lttI7rEYPKBbdS/yljO5zte8AUXrZ9kSjBw5UR5J2AyTs0lL6PPTvO3feqYoeykWnzEyvCAIeXA=="
+    },
+    "@ast-grep/cli-win32-arm64-msvc@0.32.3": {
+      "integrity": "sha512-WFELr1aSNWCwE+Pe6fwYggQ46DO741sUUSnM6Ep91fQ5qnYvHNeb7GZFkgO4bUiDMGPzwASz27oV+4fWj1uzkQ=="
+    },
+    "@ast-grep/cli-win32-ia32-msvc@0.32.3": {
+      "integrity": "sha512-D7vJXQ15ZCXmx+ruU5wdj0eYP/dcT8Joz35dB/qHhSpBwxb4sE4hIWo2usgJJSUjLVqy/iNcdL8OqFmMicPx1g=="
+    },
+    "@ast-grep/cli-win32-x64-msvc@0.32.3": {
+      "integrity": "sha512-yBeQQsOvcjOTsfQcHuuQeV45KkICwqcc0ddAPmqCjmuTOiPCBRZxdG6j2iKOwbW1kmmlgDmvDf6gUxXKxK5/2g=="
+    },
+    "@ast-grep/cli@0.32.3": {
+      "integrity": "sha512-K8zt7dKeFFAGHJewjJyMpx6UGxh1iYSB5OSv/h9HZb1eGBFv9PPJ1x+hFvUDLLdzvlNDxmAfvl6t5nZQRlrezg==",
+      "dependencies": [
+        "@ast-grep/cli-darwin-arm64",
+        "@ast-grep/cli-darwin-x64",
+        "@ast-grep/cli-linux-arm64-gnu",
+        "@ast-grep/cli-linux-x64-gnu",
+        "@ast-grep/cli-win32-arm64-msvc",
+        "@ast-grep/cli-win32-ia32-msvc",
+        "@ast-grep/cli-win32-x64-msvc",
+        "detect-libc"
+      ]
+    },
     "@esbuild/aix-ppc64@0.24.2": {
       "integrity": "sha512-thpVCb/rhxE/BnMLQ7GReQLLN8q9qbHmI55F4489/ByVg2aQaQ6kbcLb6FHkocZzQhxc4gx0sCk0tJkKBFzDhA=="
     },
@@ -93,6 +128,9 @@
     "@esbuild/win32-x64@0.24.2": {
       "integrity": "sha512-7VTgWzgMGvup6aSqDPLiW5zHaxYJGTO4OokMjIlrCtf+VpEL+cXKtCvg723iguPYI5oaUNdS+/V7OU2gvXVWEg=="
     },
+    "detect-libc@2.0.3": {
+      "integrity": "sha512-bwy0MGW55bG41VqxxypOsdSdGqLwXPI/focwgTYCFMbdUiBAxLg9CFzG08sz2aqzknwiX7Hkl0bQENjg8iLByw=="
+    },
     "esbuild@0.24.2": {
       "integrity": "sha512-+9egpBW8I3CD5XPe0n6BfT5fxLzxrlDzqydF3aviG+9ni1lDC/OvMHcxqEFV0+LANZG5R1bFMWfUrjVsdwxJvA==",
       "dependencies": [
@@ -133,6 +171,7 @@
     ],
     "packageJson": {
       "dependencies": [
+        "npm:@ast-grep/cli@0.32.3",
         "npm:esbuild@0.24.2",
         "npm:typescript@5.7.2"
       ]
