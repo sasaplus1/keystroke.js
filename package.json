@@ -34,7 +34,7 @@
     "build": "esbuild --outdir=./dist ./main.ts ./mod.ts && sg scan -U -r ./replace-extension.yml ./dist/*.js && tsc -p ./tsconfig.type.jsonc",
     "check": "deno check ./main.ts ./mod.ts",
     "clean": "rm -rf ./dist",
-    "postinstall": "deno install --lock --allow-scripts=npm:@ast-grep/cli@0.32.3 || true",
+    "postinstall": "deno install --lock --allow-scripts || true",
     "prepublishOnly": "npm run clean && npm run build",
     "test": "vitest run"
   },
