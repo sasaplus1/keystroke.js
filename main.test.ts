@@ -104,7 +104,7 @@ describe("parse", () => {
   // special keys
   testcases.push({
     input: "<ESC>",
-    expected: [{ ...base, code: "ESC", raw: "<ESC>" }],
+    expected: [{ ...base, code: "esc", raw: "<ESC>" }],
   });
   testcases.push({
     input: "<esc>",
@@ -113,11 +113,11 @@ describe("parse", () => {
 
   testcases.push({
     input: "<S-Tab>",
-    expected: [{ ...base, code: "Tab", shift: true, raw: "<S-Tab>" }],
+    expected: [{ ...base, code: "tab", shift: true, raw: "<S-Tab>" }],
   });
   testcases.push({
     input: "<C-CR>",
-    expected: [{ ...base, code: "CR", ctrl: true, raw: "<C-CR>" }],
+    expected: [{ ...base, code: "cr", ctrl: true, raw: "<C-CR>" }],
   });
 
   // invalid keys
