@@ -12,6 +12,7 @@ jobs:
         command:
           - deno fmt --check
           - deno lint
+          - deno run check
           # test with vitest
           - deno run test
     runs-on: ubuntu-latest
