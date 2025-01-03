@@ -4,6 +4,7 @@
   "version": "2.0.0",
   "author": "sasa+1 <sasaplus1@gmail.com>",
   "devDependencies": {
+    "esbuild": "0.24.2",
     "typescript": "5.7.2"
   },
   "engines": {
