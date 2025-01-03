@@ -1,0 +1,13 @@
+id: replace-extension
+language: javascript
+rule:
+  pattern: $TS
+  kind: string_fragment
+  regex: ^\.{1,2}\/.*\.ts$
+transform:
+  JS:
+    replace:
+      replace: \.ts$
+      by: .js
+      source: $TS
+fix: $JS
