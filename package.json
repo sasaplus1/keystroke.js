@@ -26,6 +26,7 @@
     "url": "git+https://github.com/sasaplus1/keystroke.js.git"
   },
   "scripts": {
+    "postinstall": "deno install --lock || true",
     "prepublishOnly": "tsc -p ./tsconfig.type.json"
   },
   "sideEffects": false,
