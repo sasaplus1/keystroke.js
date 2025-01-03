@@ -1,6 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
+    // tsc cannot output javascript when allowImportingTsExtensions is true
+    // https://www.typescriptlang.org/tsconfig/#allowImportingTsExtensions
     "allowImportingTsExtensions": true,
     "declaration": true,
     "declarationDir": "./dist",
