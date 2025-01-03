@@ -21,7 +21,7 @@ jobs:
       - uses: denoland/setup-deno@4606d5cc6fb3f673efd4f594850e3f4b3e9d29cd # v2.0.0
         with:
           deno-version: v2.x
-      - run: deno install --lock
+      - run: deno install --lock --allow-scripts
       - run: ${{ matrix.command }}
   node:
     strategy:
@@ -38,6 +38,23 @@ jobs:
           node-version: ${{ matrix.version }}
       - run: npm ci
       - run: npm test
+  browser:
+    strategy:
+      fail-fast: false
+      matrix:
+        browser:
+          - chromium
+          - firefox
+          - webkit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npx playwright install --with-deps ${{ matrix.browser }}
+      - run: npx vitest run --browser=${{ matrix.browser }} --browser.provider=playwright --browser.headless
   bun:
     runs-on: ubuntu-latest
     steps:

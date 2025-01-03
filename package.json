@@ -5,7 +5,9 @@
   "author": "sasa+1 <sasaplus1@gmail.com>",
   "devDependencies": {
     "@ast-grep/cli": "0.32.3",
+    "@vitest/browser": "2.1.8",
     "esbuild": "0.24.2",
+    "playwright": "1.49.1",
     "typescript": "5.7.2",
     "vitest": "2.1.8"
   },
@@ -32,7 +34,7 @@
     "build": "esbuild --outdir=./dist ./main.ts ./mod.ts && sg scan -U -r ./replace-extension.yml ./dist/*.js && tsc -p ./tsconfig.type.jsonc",
     "check": "deno check ./main.ts ./mod.ts",
     "clean": "rm -rf ./dist",
-    "postinstall": "deno install --lock --allow-scripts=npm:@ast-grep/cli@0.32.3 || true",
+    "postinstall": "deno install --lock --allow-scripts || true",
     "prepublishOnly": "npm run clean && npm run build",
     "test": "vitest run"
   },
