@@ -235,14 +235,14 @@ describe("KeystrokeTree", () => {
       kt.set("i", "insert");
       kt.clear();
 
-      expect(kt.get("i")).toBe(null);
+      expect(kt.get("i")).toBe(undefined);
     });
   });
   describe("get & set", () => {
     it("can set and get a value by keystroke", () => {
       const kt = new KeystrokeTree<() => string>();
 
-      expect(kt.get("i")).toBe(null);
+      expect(kt.get("i")).toBe(undefined);
 
       kt.set("i", () => "i");
       expect(kt.get("i")?.()).toBe("i");
