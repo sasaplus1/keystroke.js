@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { type Keystroke, parse } from "./main.ts";
+import { type Keystroke, KeystrokeTree, parse, stringify } from "./main.ts";
 
 describe("parse", () => {
   const base: Keystroke = {
@@ -19,6 +19,10 @@ describe("parse", () => {
   testcases.push({
     input: "i",
     expected: [{ ...base, code: "i", raw: "i" }],
+  });
+  testcases.push({
+    input: "8",
+    expected: [{ ...base, code: "8", raw: "8" }],
   });
   testcases.push({
     input: "gg",
@@ -100,11 +104,19 @@ describe("parse", () => {
       { ...base, code: "g", ctrl: true, raw: "<C-g>" },
     ],
   });
+  testcases.push({
+    input: "<C-x>6k",
+    expected: [
+      { ...base, code: "x", ctrl: true, raw: "<C-x>" },
+      { ...base, code: "6", raw: "6" },
+      { ...base, code: "k", raw: "k" },
+    ],
+  });
 
   // special keys
   testcases.push({
     input: "<ESC>",
-    expected: [{ ...base, code: "ESC", raw: "<ESC>" }],
+    expected: [{ ...base, code: "esc", raw: "<ESC>" }],
   });
   testcases.push({
     input: "<esc>",
@@ -113,11 +125,11 @@ describe("parse", () => {
 
   testcases.push({
     input: "<S-Tab>",
-    expected: [{ ...base, code: "Tab", shift: true, raw: "<S-Tab>" }],
+    expected: [{ ...base, code: "tab", shift: true, raw: "<S-Tab>" }],
   });
   testcases.push({
     input: "<C-CR>",
-    expected: [{ ...base, code: "CR", ctrl: true, raw: "<C-CR>" }],
+    expected: [{ ...base, code: "cr", ctrl: true, raw: "<C-CR>" }],
   });
 
   // invalid keys
@@ -134,10 +146,115 @@ describe("parse", () => {
     expected: [{ ...base, code: "", ctrl: true, raw: "<C->" }],
   });
 
-  // NOTE: vitest has it.each, but @std/testing/bdd doesn't have it
+  // NOTE: vitest has it.each, but portability is a priority
   for (const { input, expected } of testcases) {
     it(`can parse "${input}"`, () => {
       expect(parse(input)).toEqual(expected);
     });
   }
+});
+
+describe("stringify", () => {
+  const base: Keystroke = {
+    alt: false,
+    code: "",
+    ctrl: false,
+    meta: false,
+    raw: "",
+    shift: false,
+  };
+
+  type Testcase = { input: Keystroke; expected: string };
+
+  const testcases: Testcase[] = [];
+
+  // raw key
+  testcases.push({ input: { ...base, code: "i" }, expected: "i" });
+  testcases.push({ input: { ...base, code: "8" }, expected: "8" });
+  testcases.push({ input: { ...base, code: "/" }, expected: "/" });
+
+  // with modifiers
+  testcases.push({
+    input: { ...base, code: "x", alt: true },
+    expected: "<A-x>",
+  });
+  testcases.push({
+    input: { ...base, code: "f", ctrl: true },
+    expected: "<C-f>",
+  });
+  testcases.push({
+    input: { ...base, code: "x", meta: true },
+    expected: "<M-x>",
+  });
+  testcases.push({
+    input: { ...base, code: "g", shift: true },
+    expected: "<S-g>",
+  });
+  testcases.push({ input: { ...base, code: "G" }, expected: "<S-g>" });
+
+  // multiple modifiers
+  testcases.push({
+    input: { ...base, code: "k", ctrl: true, shift: true },
+    expected: "<C-S-k>",
+  });
+  testcases.push({
+    input: { ...base, code: "u", alt: true, meta: true },
+    expected: "<A-M-u>",
+  });
+
+  // special keys
+  testcases.push({ input: { ...base, code: "esc" }, expected: "<esc>" });
+  testcases.push({
+    input: { ...base, code: "tab", shift: true },
+    expected: "<S-tab>",
+  });
+  testcases.push({
+    input: { ...base, code: "cr", ctrl: true },
+    expected: "<C-cr>",
+  });
+
+  // invalid keys
+  testcases.push({ input: { ...base, code: "" }, expected: "" });
+  testcases.push({
+    input: { ...base, code: "", ctrl: true },
+    expected: "<C->",
+  });
+
+  for (const { input, expected } of testcases) {
+    it(`can stringify to "${expected}"`, () => {
+      expect(stringify(input)).toEqual(expected);
+    });
+  }
+});
+
+describe("KeystrokeTree", () => {
+  describe("clear", () => {
+    it("can clear the tree", () => {
+      const kt = new KeystrokeTree<string>();
+
+      kt.set("i", "insert");
+      kt.clear();
+
+      expect(kt.get("i")).toBe(undefined);
+    });
+  });
+  describe("get & set", () => {
+    it("can set and get a value by keystroke", () => {
+      const kt = new KeystrokeTree<() => string>();
+
+      expect(kt.get("i")).toBe(undefined);
+
+      kt.set("i", () => "i");
+      expect(kt.get("i")?.()).toBe("i");
+
+      kt.set("<C-x><C-c>", () => "<C-x><C-c>");
+      expect(kt.get("<C-x><C-c>")?.()).toBe("<C-x><C-c>");
+
+      kt.set("<C-x>", () => "<C-x>");
+      expect(kt.get("<C-x>")?.()).toBe("<C-x>");
+
+      kt.set("<C-x><C-c>", () => "exit");
+      expect(kt.get("<C-x><C-c>")?.()).toBe("exit");
+    });
+  });
 });
