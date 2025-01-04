@@ -30,6 +30,9 @@
     "type": "git",
     "url": "git+https://github.com/sasaplus1/keystroke.js.git"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "esbuild --outdir=./dist ./main.ts ./mod.ts && sg scan -U -r ./replace-extension.yml ./dist/*.js && tsc -p ./tsconfig.type.jsonc",
     "check": "deno check ./main.ts ./mod.ts",
