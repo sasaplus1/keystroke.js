@@ -134,7 +134,7 @@ describe("parse", () => {
     expected: [{ ...base, code: "", ctrl: true, raw: "<C->" }],
   });
 
-  // NOTE: vitest has it.each, but @std/testing/bdd doesn't have it
+  // NOTE: vitest has it.each, but portability is a priority
   for (const { input, expected } of testcases) {
     it(`can parse "${input}"`, () => {
       expect(parse(input)).toEqual(expected);
