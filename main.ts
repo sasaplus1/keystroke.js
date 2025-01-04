@@ -87,17 +87,13 @@ export function stringify(keystroke: Keystroke): string {
 /** Keystroke node */
 export type KeystrokeNode<T> = {
   children: {
-    [key: string]: KeystrokeNode<T> | null;
+    [key: string]: KeystrokeNode<T>;
   };
-  value: T | null;
+  value?: T;
 };
 
 /** root of Keystroke tree */
-export type KeystrokeRoot<T> = {
-  children: {
-    [key: string]: KeystrokeNode<T>;
-  };
-};
+export type KeystrokeRoot<T> = Pick<KeystrokeNode<T>, "children">;
 
 /**
  * Keystroke tree class
@@ -133,9 +129,9 @@ export class KeystrokeTree<T> {
   /**
    * get value of a keystroke
    * @param keystroke - keystroke string
-   * @returns return value of the keystroke if exists, otherwise null
+   * @returns return value of the keystroke if exists, otherwise undefined
    */
-  get(keystroke: string): T | null {
+  get(keystroke: string): T | undefined {
     const keystrokes = parse(keystroke);
 
     let node: KeystrokeRoot<T> | KeystrokeNode<T> = this._keystrokeRoot;
@@ -144,7 +140,7 @@ export class KeystrokeTree<T> {
       const key = stringify(ks);
 
       if (!node.children[key]) {
-        return null;
+        return undefined;
       }
 
       node = node.children[key] as KeystrokeNode<T>;
@@ -167,7 +163,7 @@ export class KeystrokeTree<T> {
       const key = stringify(ks);
 
       if (!node.children[key]) {
-        node.children[key] = { children: {}, value: null };
+        node.children[key] = { children: {} };
       }
 
       node = node.children[key] as KeystrokeNode<T>;
