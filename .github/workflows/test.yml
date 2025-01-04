@@ -15,6 +15,7 @@ jobs:
           - deno run check
           # test with vitest
           - deno run test
+          - deno test --doc ./README.md ./mod.ts ./main.ts
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
