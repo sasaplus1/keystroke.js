@@ -32,8 +32,14 @@ stringify({ code: "f", ctrl: true } as Keystroke); // => "<C-f>"
 
 const kt = new KeystrokeTree<() => string>();
 
+kt.set("<C-x><C-c>", () => "exit");
+kt.get("<C-x><C-c>")?.(); // => "exit"
+
 kt.set("<C-x>6k", () => "close-session");
 kt.get("<C-x>6k")?.(); // => "close-session"
+
+kt.clear();
+kt.get("<C-x>6k"); // => undefined
 ```
 
 ## License
