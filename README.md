@@ -17,7 +17,12 @@ $ npm install @sasaplus1/keystroke
 ## Usage
 
 ```ts
-import { type Keystroke, KeystrokeTree, parse, stringify } from "@sasaplus1/keystroke";
+import {
+  type Keystroke,
+  KeystrokeTree,
+  parse,
+  stringify,
+} from "@sasaplus1/keystroke";
 
 parse("cit"); // => [{code: "c", ... }, {code: "i", ... }, {code: "t", ... }]
 parse("<C-x><C-c>"); // => [{code: "x", ctrl: true, ... }, {code: "c", ctrl: true, ... }]
