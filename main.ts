@@ -79,7 +79,9 @@ export function stringify(keystroke: Keystroke): string {
 
   result.push(code.toLowerCase());
 
-  return result.length > 1 ? `<${result.join("")}>` : result.join("");
+  const key = result.join("");
+
+  return key.length > 1 ? `<${key}>` : key;
 }
 
 /** Keystroke node */
