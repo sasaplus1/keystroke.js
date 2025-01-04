@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { describe, expect, it } from "vitest";
 import { type Keystroke, KeystrokeTree, parse, stringify } from "./main.ts";
 
 describe("parse", () => {
