@@ -107,21 +107,18 @@ export type KeystrokeRoot<T> = Pick<KeystrokeNode<T>, "children">;
  * ```
  */
 export class KeystrokeTree<T> {
-  /**
-   * root of Keystroke tree
-   * @private
-   */
-  _keystrokeRoot: KeystrokeRoot<T>;
+  /** root of Keystroke tree */
+  #keystrokeRoot: KeystrokeRoot<T>;
 
   constructor() {
-    this._keystrokeRoot = {
+    this.#keystrokeRoot = {
       children: {},
     };
   }
 
   /** clear keystroke nodes */
   clear(): void {
-    this._keystrokeRoot = {
+    this.#keystrokeRoot = {
       children: {},
     };
   }
@@ -134,7 +131,7 @@ export class KeystrokeTree<T> {
   get(keystroke: string): T | undefined {
     const keystrokes = parse(keystroke);
 
-    let node: KeystrokeRoot<T> | KeystrokeNode<T> = this._keystrokeRoot;
+    let node: KeystrokeRoot<T> | KeystrokeNode<T> = this.#keystrokeRoot;
 
     for (const ks of keystrokes) {
       const key = stringify(ks);
@@ -157,7 +154,7 @@ export class KeystrokeTree<T> {
   set(keystroke: string, value: T): void {
     const keystrokes = parse(keystroke);
 
-    let node: KeystrokeRoot<T> | KeystrokeNode<T> = this._keystrokeRoot;
+    let node: KeystrokeRoot<T> | KeystrokeNode<T> = this.#keystrokeRoot;
 
     for (const ks of keystrokes) {
       const key = stringify(ks);
