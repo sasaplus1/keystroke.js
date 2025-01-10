@@ -5,17 +5,19 @@ on:
   - pull_request
 
 jobs:
-  deno:
+  test:
+    name: ${{ matrix.command }}
     strategy:
       fail-fast: false
       matrix:
         command:
-          - deno fmt --check
-          - deno lint
-          - deno run check
-          # test with vitest
-          - deno run test
-          - deno test --doc ./README.md ./mod.ts ./main.ts
+          - npm run lint:check
+          - npm run lint:fmt
+          - npm run lint:lint
+          - npm run test:doc
+          - npm run test:unit
+          - npx deno task test:unit
+          - npx bun run test:unit
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -23,28 +25,9 @@ jobs:
       - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
         with:
           node-version-file: package.json
-      - uses: denoland/setup-deno@909cc5acb0fdd60627fb858598759246509fa755 # v2.0.2
-        with:
-          deno-version: v2.x
-      - run: deno install --lock --allow-scripts
-      - run: ${{ matrix.command }}
-  node:
-    strategy:
-      fail-fast: false
-      matrix:
-        version:
-          - 20
-          - 22
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
-        with:
-          node-version: ${{ matrix.version }}
       - run: npm ci --ignore-scripts
       - run: npm rebuild && npm run prepare --if-present
-      - run: npm test
+      - run: ${{ matrix.command }}
   browser:
     strategy:
       fail-fast: false
@@ -64,15 +47,3 @@ jobs:
       - run: npm rebuild && npm run prepare --if-present
       - run: npx playwright install --with-deps ${{ matrix.browser }}
       - run: npx vitest run --browser=${{ matrix.browser }} --browser.provider=playwright --browser.headless
-  bun:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - uses: oven-sh/setup-bun@4bc047ad259df6fc24a6c9b0f9a0cb08cf17fbe5 # v2.0.1
-        with:
-          bun-version: latest
-      - run: bun pm migrate
-      - run: bun install
-      # test with vitest
-      - run: bun run test
