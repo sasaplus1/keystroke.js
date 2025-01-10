@@ -46,5 +46,5 @@ jobs:
           node-version-file: package.json
       - run: npm ci --ignore-scripts
       - run: npm rebuild && npm run prepare --if-present
-      - run: npx playwright install --with-deps ${{ matrix.browser }}
+      - run: npx playwright install --with-deps --only-shell ${{ matrix.browser }}
       - run: npx vitest run --browser=${{ matrix.browser }} --browser.provider=playwright --browser.headless
