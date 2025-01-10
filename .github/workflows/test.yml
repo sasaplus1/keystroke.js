@@ -29,6 +29,7 @@ jobs:
       - run: npm rebuild && npm run prepare --if-present
       - run: ${{ matrix.command }}
   browser:
+    name: ${{ matrix.browser }}
     strategy:
       fail-fast: false
       matrix:
