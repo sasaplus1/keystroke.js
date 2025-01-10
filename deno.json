@@ -4,6 +4,7 @@
   "version": "3.0.0",
   "exports": "./mod.ts",
   "license": "MIT",
+  "lock": false,
   "nodeModulesDir": "manual",
   "publish": {
     "include": [
