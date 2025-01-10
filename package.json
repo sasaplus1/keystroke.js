@@ -6,6 +6,8 @@
   "devDependencies": {
     "@ast-grep/cli": "0.32.3",
     "@vitest/browser": "2.1.8",
+    "bun": "1.1.43",
+    "deno": "2.1.5",
     "esbuild": "0.24.2",
     "playwright": "1.49.1",
     "typescript": "5.7.2",
@@ -23,21 +25,29 @@
   ],
   "license": "MIT",
   "main": "./dist/mod.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "readmeFilename": "./README.md",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sasaplus1/keystroke.js.git"
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "scripts": {
-    "build": "esbuild --outdir=./dist ./main.ts ./mod.ts && sg scan -U -r ./replace-extension.yml ./dist/*.js && tsc -p ./tsconfig.type.jsonc",
-    "check": "deno check ./main.ts ./mod.ts",
+    "build": "npm run build:bun && npm run build:ast-grep && npm run build:tsc",
+    "build:ast-grep": "sg scan -U -r ./replace-extension.yml ./dist/*.js",
+    "build:bun": "ls -1 ./mod.ts ./main.ts | xargs -I % -n 1 sh -c 'bun build --no-bundle --outfile=./dist/$(basename % .ts).js %'",
+    "build:tsc": "tsc -p ./tsconfig.type.jsonc",
     "clean": "rm -rf ./dist",
-    "postinstall": "deno install --lock --allow-scripts || true",
+    "fix": "deno fmt",
+    "lint": "npm run lint:check && npm run lint:lint && npm run lint:fmt",
+    "lint:check": "deno check ./main.ts ./mod.ts",
+    "lint:fmt": "deno fmt --check",
+    "lint:lint": "deno lint",
     "prepublishOnly": "npm run clean && npm run build",
-    "test": "vitest run"
+    "test": "npm run test:unit && npm run test:doc",
+    "test:doc": "deno test --doc ./README.md ./mod.ts ./main.ts",
+    "test:unit": "vitest run"
   },
   "sideEffects": false,
   "type": "module"
