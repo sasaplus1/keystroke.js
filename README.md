@@ -1,6 +1,7 @@
 # keystroke.js
 
 [![JSR](https://jsr.io/badges/@sasaplus1/keystroke)](https://jsr.io/@sasaplus1/keystroke)
+[![NPM Version](https://img.shields.io/npm/v/%40sasaplus1%2Fkeystroke)](https://www.npmjs.com/package/@sasaplus1/keystroke)
 
 manage keystroke
 
