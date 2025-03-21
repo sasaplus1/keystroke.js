@@ -8,7 +8,7 @@
     "@vitest/browser": "3.0.9",
     "bun": "1.2.5",
     "deno": "2.2.4",
-    "playwright": "1.51.0",
+    "playwright": "1.51.1",
     "typescript": "5.8.2",
     "vitest": "3.0.9"
   },
