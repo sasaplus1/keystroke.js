@@ -5,12 +5,12 @@
   "author": "sasa+1 <sasaplus1@gmail.com>",
   "devDependencies": {
     "@ast-grep/cli": "0.36.2",
-    "@vitest/browser": "3.0.9",
+    "@vitest/browser": "3.1.1",
     "bun": "1.2.7",
     "deno": "2.2.6",
     "playwright": "1.51.1",
     "typescript": "5.8.2",
-    "vitest": "3.0.9"
+    "vitest": "3.1.1"
   },
   "engines": {
     "node": "22",
