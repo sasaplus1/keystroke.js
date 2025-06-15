@@ -6,7 +6,7 @@
   "devDependencies": {
     "@ast-grep/cli": "0.38.5",
     "@vitest/browser": "3.2.3",
-    "bun": "1.2.15",
+    "bun": "1.2.16",
     "deno": "2.3.5",
     "playwright": "1.52.0",
     "typescript": "5.8.3",
