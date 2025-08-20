@@ -4,7 +4,7 @@
   "version": "3.0.0",
   "author": "sasa+1 <sasaplus1@gmail.com>",
   "devDependencies": {
-    "@ast-grep/cli": "0.39.3",
+    "@ast-grep/cli": "0.39.4",
     "@vitest/browser": "3.2.4",
     "bun": "1.2.20",
     "deno": "2.3.7",
