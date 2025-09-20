@@ -7,7 +7,7 @@
     "@ast-grep/cli": "0.39.5",
     "@vitest/browser": "3.2.4",
     "bun": "1.2.22",
-    "deno": "2.3.7",
+    "deno": "2.5.1",
     "playwright": "1.55.0",
     "typescript": "5.9.2",
     "vitest": "3.2.4"
