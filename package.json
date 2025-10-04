@@ -9,7 +9,7 @@
     "bun": "1.2.23",
     "deno": "2.3.7",
     "playwright": "1.55.1",
-    "typescript": "5.9.2",
+    "typescript": "5.9.3",
     "vitest": "3.2.4"
   },
   "engines": {
