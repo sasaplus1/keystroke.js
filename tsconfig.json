@@ -16,7 +16,6 @@
   },
   "files": [
     "main.ts",
-    "main.test.ts",
     "mod.ts"
   ]
 }
