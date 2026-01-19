@@ -7,11 +7,15 @@
   "lock": false,
   "nodeModulesDir": "manual",
   "publish": {
-    "include": [
-      "./LICENSE",
-      "./README.md",
-      "./main.ts",
-      "./mod.ts"
+    "exclude": [
+      "*.test.ts",
+      ".github/",
+      "*.config.*",
+      "tsconfig*",
+      "package*.json",
+      ".npmrc",
+      ".renovaterc.json",
+      "replace-extension.yml"
     ]
   }
 }
