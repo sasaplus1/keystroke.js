@@ -12,10 +12,13 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "outDir": "./dist",
-    "target": "es2020"
+    "target": "es2020",
+    "skipLibCheck": true
   },
-  "files": [
-    "main.ts",
-    "mod.ts"
+  "include": [
+    "*.ts"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }
