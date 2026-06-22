@@ -47,4 +47,7 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npm rebuild && npm run prepare --if-present
       - run: npx playwright install --with-deps --only-shell ${{ matrix.browser }}
+        env:
+          DEBIAN_FRONTEND: noninteractive
+          NEEDRESTART_MODE: a
       - run: npx vitest run --browser=${{ matrix.browser }} --browser.provider=playwright --browser.headless
